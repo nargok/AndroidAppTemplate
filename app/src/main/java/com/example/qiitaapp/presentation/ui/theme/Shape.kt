@@ -1,4 +1,4 @@
-package com.example.qiitaapp.ui.theme
+package com.example.qiitaapp.presentation.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

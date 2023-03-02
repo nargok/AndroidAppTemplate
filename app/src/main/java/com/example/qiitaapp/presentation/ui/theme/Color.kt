@@ -1,4 +1,4 @@
-package com.example.qiitaapp.ui.theme
+package com.example.qiitaapp.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

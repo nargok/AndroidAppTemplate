@@ -17,7 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.qiitaapp.domain.Article
-import com.example.qiitaapp.ui.theme.QiitaAppTheme
+import com.example.qiitaapp.presentation.theme.QiitaAppTheme
+import com.example.qiitaapp.presentation.ui.theme.ArticleListView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,29 +32,6 @@ class MainActivity : ComponentActivity() {
                 ) {
                     ArticleListView()
                 }
-            }
-        }
-    }
-}
-
-val article1 = Article("1", "kotlin")
-val article2 = Article("2", "React")
-val articleList: List<Article> = mutableListOf<Article>(article1, article2)
-
-@Composable
-fun ArticleListView() {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        LazyColumn(
-            contentPadding = PaddingValues(
-                vertical = 8.dp,
-                horizontal = 8.dp
-            )
-        ) {
-            items(articleList) { article ->
-                Text(article.title)
             }
         }
     }
