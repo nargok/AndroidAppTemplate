@@ -10,12 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.qiitaapp.presentation.viewmodel.ArticlesViewModel
 
 @Composable
 fun ArticleListView() {
-    // TODO DIにする
-    val viewModel: ArticlesViewModel = ArticlesViewModel()
+    val viewModel: ArticlesViewModel = hiltViewModel()
 
     Box(
         contentAlignment = Alignment.Center,

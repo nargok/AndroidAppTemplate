@@ -1,4 +1,4 @@
-package com.example.qiitaapp
+package com.example.qiitaapp.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -19,7 +19,9 @@ import androidx.compose.ui.unit.dp
 import com.example.qiitaapp.domain.Article
 import com.example.qiitaapp.presentation.theme.QiitaAppTheme
 import com.example.qiitaapp.presentation.ui.theme.ArticleListView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

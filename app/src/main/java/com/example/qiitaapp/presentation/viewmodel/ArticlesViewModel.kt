@@ -3,13 +3,24 @@ package com.example.qiitaapp.presentation.viewmodel
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.qiitaapp.domain.Article
+import androidx.lifecycle.viewModelScope
+import com.example.qiitaapp.application.ArticleViewUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-val article1 = Article("1", "kotlin")
-val article2 = Article("2", "React")
-val articleList: List<Article> = mutableListOf<Article>(article1, article2)
-
-class ArticlesViewModel : ViewModel() {
+@HiltViewModel
+class ArticlesViewModel @Inject constructor(
+    private val articleViewUseCase: ArticleViewUseCase
+) : ViewModel() {
+    private val errorHandler = CoroutineExceptionHandler { _, exception ->
+        exception.printStackTrace()
+        _state.value = _state.value.copy(
+            error = exception.message,
+            isLoading =  false
+        )
+    }
 
     private val _state = mutableStateOf(
         ArticlesScreenState(
@@ -25,9 +36,11 @@ class ArticlesViewModel : ViewModel() {
     }
 
     private fun getArticles() {
-        _state.value = _state.value.copy(
-            articles = articleList,
-            isLoading = false
-        )
+        viewModelScope.launch(errorHandler) {
+            _state.value = _state.value.copy(
+                articles = articleViewUseCase.list(),
+                isLoading = false
+            )
+        }
     }
 }
