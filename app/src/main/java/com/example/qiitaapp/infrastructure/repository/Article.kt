@@ -26,7 +26,11 @@ class ArticleRepositoryImpl @Inject constructor(
     private fun remoteArticleToModel(param: RemoteArticle): Article {
         return Article(
             id = param.id,
-            title = param.title
+            title = param.title,
+            user = Article.User(
+                id = param.user.id,
+                profileImageUrl = param.user.profileImageUrl,
+            )
         )
     }
 }

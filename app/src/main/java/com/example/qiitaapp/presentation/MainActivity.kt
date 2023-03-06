@@ -15,8 +15,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.qiitaapp.domain.Article
 import com.example.qiitaapp.presentation.theme.QiitaAppTheme
 import com.example.qiitaapp.presentation.ui.theme.ArticleListScreen
+import com.example.qiitaapp.presentation.viewmodel.ArticlesScreenState
 import com.example.qiitaapp.presentation.viewmodel.ArticlesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -56,15 +58,13 @@ private fun QiitaApp() {
 
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    QiitaAppTheme {
-        Greeting("Android")
-    }
+    val articles: List<Article> = listOf<Article>(
+//        Article("aaa", "hogehoge"),
+//        Article("bbb", "fugafuga"),
+    )
+
+    ArticleListScreen(state = ArticlesScreenState(articles, isLoading = true), onItemClick = {})
 }

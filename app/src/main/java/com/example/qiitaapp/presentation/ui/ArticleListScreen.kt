@@ -1,20 +1,23 @@
 package com.example.qiitaapp.presentation.ui.theme
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import com.example.qiitaapp.domain.Article
 import com.example.qiitaapp.presentation.viewmodel.ArticlesScreenState
-import com.example.qiitaapp.presentation.viewmodel.ArticlesViewModel
 
 @Composable
 fun ArticleListScreen(
@@ -32,9 +35,7 @@ fun ArticleListScreen(
             )
         ) {
             items(state.articles) { article ->
-                Text(article.title,
-                    modifier = Modifier.clickable { onItemClick(article.id) })
-
+                ArticleItem(item = article, onItemClick = onItemClick)
             }
         }
 
@@ -42,4 +43,39 @@ fun ArticleListScreen(
             CircularProgressIndicator()
     }
 
+}
+
+
+@Composable
+fun ArticleItem(
+    item: Article,
+    onItemClick: (id: String) -> Unit
+) {
+    Card(
+        elevation = 4.dp,
+        modifier = Modifier
+            .padding(8.dp)
+            .clickable { onItemClick(item.id) }
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            AsyncImage(
+                model = item.user.profileImageUrl,
+                contentDescription = item.user.id,
+                modifier = Modifier
+                    .size(36.dp)
+                    .clip(shape = CircleShape)
+            )
+
+            Text(
+                item.title,
+                style = TextStyle(
+                    fontSize = 14.sp,
+                )
+            )
+        }
+    }
 }
