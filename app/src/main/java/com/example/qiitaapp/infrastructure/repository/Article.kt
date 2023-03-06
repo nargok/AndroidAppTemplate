@@ -27,7 +27,7 @@ class ArticleRepositoryImpl @Inject constructor(
         return Article(
             id = param.id,
             title = param.title,
-            user = Article.User(
+            author = Article.Author(
                 id = param.user.id,
                 profileImageUrl = param.user.profileImageUrl,
             )

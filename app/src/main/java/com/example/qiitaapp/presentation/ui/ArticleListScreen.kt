@@ -63,8 +63,8 @@ fun ArticleItem(
                 .padding(8.dp)
         ) {
             AsyncImage(
-                model = item.user.profileImageUrl,
-                contentDescription = item.user.id,
+                model = item.author.profileImageUrl,
+                contentDescription = item.author.id,
                 modifier = Modifier
                     .size(36.dp)
                     .clip(shape = CircleShape)
