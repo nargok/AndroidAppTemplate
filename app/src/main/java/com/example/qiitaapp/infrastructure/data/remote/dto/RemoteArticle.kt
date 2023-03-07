@@ -9,6 +9,10 @@ data class RemoteArticle(
     val title: String,
     @SerializedName("url")
     val url: String,
+    @SerializedName("body")
+    val body: String?,
+    @SerializedName("rendered_body")
+    val renderedBody: String?,
     @SerializedName("user")
     val user: User,
 ) {

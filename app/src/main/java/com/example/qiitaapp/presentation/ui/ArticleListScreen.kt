@@ -16,13 +16,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.example.qiitaapp.domain.Article
+import com.example.qiitaapp.domain.model.Article
+import com.example.qiitaapp.domain.model.vo.ArticleId
 import com.example.qiitaapp.presentation.viewmodel.ArticlesScreenState
 
 @Composable
 fun ArticleListScreen(
     state: ArticlesScreenState,
-    onItemClick: (id: String) -> Unit,
+    onItemClick: (id: ArticleId) -> Unit,
 ) {
     Box(
         contentAlignment = Alignment.Center,
@@ -49,7 +50,7 @@ fun ArticleListScreen(
 @Composable
 fun ArticleItem(
     item: Article,
-    onItemClick: (id: String) -> Unit
+    onItemClick: (id: ArticleId) -> Unit
 ) {
     Card(
         elevation = 4.dp,
