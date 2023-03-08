@@ -6,6 +6,7 @@ data class Article(
     val id: ArticleId,
     val title: String,
     val body: String?,
+    val htmlContent: String?,
     val author: Author
 ) {
     data class Author(
@@ -13,4 +14,3 @@ data class Article(
         val profileImageUrl: String?
     )
 }
-
